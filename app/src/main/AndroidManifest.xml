@@ -6,10 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="Algol Client"
-        android:theme="@style/Theme.AlgolClient"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AlgolClient">
         
         <activity
             android:name=".MainActivity"
