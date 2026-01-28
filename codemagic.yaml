@@ -2,28 +2,25 @@ workflows:
   android-workflow:
     name: Algol Client Build
     max_build_duration: 60
-    instance_type: mac_mini_m1
+    instance_type: linux_x2
     environment:
-      android_signing:
-        - keystore_reference
-      groups:
-        - google_play
+      java: 17
       vars:
         PACKAGE_NAME: "com.algol.client"
-      java: 17
     scripts:
       - name: Set up local.properties
         script: | 
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Build Android app
+      - name: Build Android Debug APK
         script: | 
-          ./gradlew assembleDebug
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/**/*.apk
     publishing:
       email:
         recipients:
-          - lulekskulek2@gmail.com
+          - build@codemagic.io
         notify:
           success: true
-          failure: true
+          failure: false
