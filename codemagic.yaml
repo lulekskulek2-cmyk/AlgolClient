@@ -2,7 +2,7 @@ workflows:
   android-workflow:
     name: Algol Client Build
     max_build_duration: 60
-    instance_type: linux_x2
+    instance_type: linux
     environment:
       java: 17
       vars:
@@ -17,10 +17,3 @@ workflows:
           ./gradlew assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/**/*.apk
-    publishing:
-      email:
-        recipients:
-          - build@codemagic.io
-        notify:
-          success: true
-          failure: false
