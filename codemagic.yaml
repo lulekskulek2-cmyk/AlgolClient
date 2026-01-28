@@ -1,0 +1,29 @@
+workflows:
+  android-workflow:
+    name: Algol Client Build
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_play
+      vars:
+        PACKAGE_NAME: "com.algol.client"
+      java: 17
+    scripts:
+      - name: Set up local.properties
+        script: | 
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Build Android app
+        script: | 
+          ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - twoj@email.com
+        notify:
+          success: true
+          failure: true
