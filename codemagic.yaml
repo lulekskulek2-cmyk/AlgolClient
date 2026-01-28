@@ -23,7 +23,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - twoj@email.com
+          - lulekskulek2@gmail.com
         notify:
           success: true
           failure: true
